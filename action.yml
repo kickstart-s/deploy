@@ -21,4 +21,4 @@ runs:
           ls -al
           cd github/${{ github.event.repository.name }}
           ls -al
-          cat ${{ github.event.repository.name }}
+          echo ${{ github.event.repository.name }}
