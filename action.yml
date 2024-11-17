@@ -1,0 +1,23 @@
+name: "deploy"
+description: "Deploy repo"
+inputs:
+  host:
+      description: "SSH host address."
+  username:
+      description: "SSH username."
+  key:
+    description: "Content of the SSH private key. For example, the raw content of ~/.ssh/id_rsa."
+
+runs:
+  using: composite
+  steps:
+    - name: ssh
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ inputs.host }}
+        username: ${{ inputs.username }}
+        key: ${{ inputs.key }}
+        script: |
+          ls -al
+          cd github/${{ github.event.repository.name }}
+          ls -al
